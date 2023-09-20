@@ -7,10 +7,14 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D ship;
 
+    //Assign values here based on how we want the ship to operate. Add other variables that you believe we need for physics
+    private float thrustSpeed;
+    private float rotationSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        ship = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -18,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
+            //Rocket thrusts
             Thrust();
         }
 
@@ -33,38 +38,19 @@ public class PlayerMovement : MonoBehaviour
 
     public void Thrust()
     {
-        //ship.AddRelativeForce()
-            //Rocket thrusts
-            Debug.Log("Thrusting");
-    
+        ship.AddRelativeForce(Vector2.up);
+        Debug.Log("Thrusting");
     }
 
     public void RotateLeft()
-    {/*
-        if (Input.GetKey("a"))
-        {
-            //ship rotates left
-        }   else if (Input.GetKey("left"))
-        {
-            //ship rotates left
-        }
-
-        if (Input.GetKey("d"))
-        {
-            //ship rotates right
-
-        }   else if (Input.GetKey("right"))
-        {
-            //ship rotates right
-        }
-        */
-
+    {
+        transform.Rotate(0, 0, .2f);
         Debug.Log("rotating left");
     }
 
     public void RotateRight()
     {
-        //ship rotates right
+        transform.Rotate(0,0,-.2f);
         Debug.Log("rotating right");
     }
 }
