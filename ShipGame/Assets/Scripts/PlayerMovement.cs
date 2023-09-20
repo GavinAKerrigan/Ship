@@ -16,19 +16,24 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("space"))
+        if (Input.GetKey(KeyCode.Space))
         {
             Thrust();
         }
 
-        if (Input.GetKey("a")) {
-            Rotate();
+        if (Input.GetKey(KeyCode.A)) {
+
+            RotateLeft();
+
+        } else if (Input.GetKey(KeyCode.D))
+        {
+            RotateRight();
         }
     }
 
     public void Thrust()
     {
-        
+        //ship.AddRelativeForce()
             //Rocket thrusts
             Debug.Log("Thrusting");
     
@@ -53,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
             //ship rotates right
         }
         */
+
         Debug.Log("rotating left");
     }
 
