@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6352295452389666408}
   - component: {fileID: -4564874920021659410}
   m_Layer: 0
-  m_Name: Android
+  m_Name: AndroidCollisionTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
