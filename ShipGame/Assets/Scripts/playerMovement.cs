@@ -42,25 +42,25 @@ public class PlayerMovement : MonoBehaviour
 
     public void Thrust()
     {
-        ship.AddRelativeForce(Vector2.up / 2);
-        Debug.Log("Thrusting");
+        ship.AddRelativeForce(Vector2.up / 5);
+        //Debug.Log("Thrusting");
     }
 
     public void RotateLeft()
     {
         transform.Rotate(0, 0, .2f);
-        Debug.Log("rotating left");
+       // Debug.Log("rotating left");
     }
 
     public void RotateRight()
     {
         transform.Rotate(0,0,-.2f);
-        Debug.Log("rotating right");
+       // Debug.Log("rotating right");
     }
 
     public void Destablizer()
     {
         ship.AddRelativeForce(Vector2.zero);
-        Debug.Log("Destablizing");
+       // Debug.Log("Destablizing");
     }
 }

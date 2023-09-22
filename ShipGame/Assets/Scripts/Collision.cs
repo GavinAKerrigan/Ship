@@ -14,7 +14,9 @@ public class Collision : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { }
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,7 +30,7 @@ public class Collision : MonoBehaviour
         else
         {
             Debug.Log("Other");
-            this.spriteRenderer.color = Color.red;
+            spriteRenderer.color = Color.red;
             //SceneManager.LoadScene(sceneName: "Level");
         }
     }
