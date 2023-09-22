@@ -25,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
             //Rocket thrusts
             Thrust();
         }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            Destablizer();
+        }
 
         if (Input.GetKey(KeyCode.A)) {
 
@@ -38,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Thrust()
     {
-        ship.AddRelativeForce(Vector2.up);
+        ship.AddRelativeForce(Vector2.up / 2);
         Debug.Log("Thrusting");
     }
 
@@ -52,5 +56,11 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.Rotate(0,0,-.2f);
         Debug.Log("rotating right");
+    }
+
+    public void Destablizer()
+    {
+        ship.AddRelativeForce(Vector2.zero);
+        Debug.Log("Destablizing");
     }
 }
