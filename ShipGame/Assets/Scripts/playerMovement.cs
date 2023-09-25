@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            Destablizer();
+            Stablizer();
         }
 
         if (Input.GetKey(KeyCode.A)) {
@@ -58,9 +58,9 @@ public class PlayerMovement : MonoBehaviour
        // Debug.Log("rotating right");
     }
 
-    public void Destablizer()
+    public void Stablizer()
     {
-        ship.AddRelativeForce(Vector2.zero);
+        ship.AddRelativeForce(Vector2.down);
        // Debug.Log("Destablizing");
     }
 }

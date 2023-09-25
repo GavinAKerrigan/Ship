@@ -345,6 +345,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4952878060316132509, guid: 578d407492ea6a4469dd054be3d3804a, type: 3}
+      propertyPath: maxVelocity
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4227461440655902945, guid: 578d407492ea6a4469dd054be3d3804a, type: 3}
       propertyPath: m_BodyType
       value: 0
