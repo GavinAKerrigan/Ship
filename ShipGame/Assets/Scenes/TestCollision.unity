@@ -351,7 +351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4952878060316132509, guid: 578d407492ea6a4469dd054be3d3804a, type: 3}
       propertyPath: maxAngularVelocity
-      value: 200
+      value: 175
       objectReference: {fileID: 0}
     - target: {fileID: 4227461440655902945, guid: 578d407492ea6a4469dd054be3d3804a, type: 3}
       propertyPath: m_BodyType
@@ -368,6 +368,18 @@ PrefabInstance:
     - target: {fileID: 5206574163566867848, guid: 578d407492ea6a4469dd054be3d3804a, type: 3}
       propertyPath: m_Name
       value: Dart
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279129607247673399, guid: 578d407492ea6a4469dd054be3d3804a, type: 3}
+      propertyPath: stablizedValue
+      value: 1.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279129607247673399, guid: 578d407492ea6a4469dd054be3d3804a, type: 3}
+      propertyPath: leftAngularVelocity
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279129607247673399, guid: 578d407492ea6a4469dd054be3d3804a, type: 3}
+      propertyPath: rightAngularVelocity
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6729738788359942741, guid: 578d407492ea6a4469dd054be3d3804a, type: 3}
       propertyPath: m_Color.b

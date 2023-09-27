@@ -34,8 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
             RotateLeft();
 
-        }
-        else if (Input.GetKey(KeyCode.D))
+        }else if (Input.GetKey(KeyCode.D))
         {
             RotateRight();
         }
