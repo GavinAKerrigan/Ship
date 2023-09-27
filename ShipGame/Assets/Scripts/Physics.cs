@@ -7,6 +7,8 @@ public class Physics : MonoBehaviour
     //Fields
     [SerializeField]
     float maxVelocity;
+    [SerializeField]
+    float maxAngularVelocity;
     Rigidbody2D rb;
 
     //Vector2 acceleration;
@@ -22,7 +24,7 @@ public class Physics : MonoBehaviour
     void Update()
     {
         MaxVelocity();
-        MinVelocity();
+        MaxAngularVelocity();
     }
 
     private void MaxVelocity()
@@ -33,11 +35,13 @@ public class Physics : MonoBehaviour
         }
     }
 
-    private void MinVelocity()
+    private void MaxAngularVelocity()
     {
-        if (rb.velocity.sqrMagnitude <= 0)
-        {
-            rb.velocity = Vector2.zero;
+        if (rb.angularVelocity < -maxAngularVelocity) { 
+            rb.angularVelocity = -maxAngularVelocity; 
+        }
+        if (rb.angularVelocity > maxAngularVelocity) { 
+            rb.angularVelocity = maxAngularVelocity; 
         }
     }
 

@@ -349,6 +349,10 @@ PrefabInstance:
       propertyPath: maxVelocity
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: -4952878060316132509, guid: 578d407492ea6a4469dd054be3d3804a, type: 3}
+      propertyPath: maxAngularVelocity
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 4227461440655902945, guid: 578d407492ea6a4469dd054be3d3804a, type: 3}
       propertyPath: m_BodyType
       value: 0

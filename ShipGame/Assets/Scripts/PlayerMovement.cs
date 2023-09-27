@@ -34,7 +34,8 @@ public class PlayerMovement : MonoBehaviour
 
             RotateLeft();
 
-        } else if (Input.GetKey(KeyCode.D))
+        }
+        else if (Input.GetKey(KeyCode.D))
         {
             RotateRight();
         }
@@ -48,19 +49,20 @@ public class PlayerMovement : MonoBehaviour
 
     public void RotateLeft()
     {
-        transform.Rotate(0, 0, .2f);
-       // Debug.Log("rotating left");
+        //transform.Rotate(0, 0, .2f);
+        ship.angularVelocity += .4f;
+        // Debug.Log("rotating left");
     }
 
     public void RotateRight()
     {
-        transform.Rotate(0,0,-.2f);
-       // Debug.Log("rotating right");
+        ship.angularVelocity -= .4f;
+        // Debug.Log("rotating right");
     }
 
     public void Stablizer()
     {
-        ship.AddRelativeForce(Vector2.down);
-       // Debug.Log("Destablizing");
+        ship.velocity = ship.velocity / 1.001f;
+        // Debug.Log("Destablizing");
     }
 }
