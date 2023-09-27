@@ -13,9 +13,15 @@ public class Collision : MonoBehaviour
     void Update()
     { }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
+<<<<<<< Updated upstream
         if (collision.gameObject.tag == "Victory")
+=======
+        Debug.Log("?");
+        Debug.Log("Collision");
+        if (GetComponent<Collider>().tag == "Victory")
+>>>>>>> Stashed changes
         {
             //SceneManager.LoadScene(sceneName: "Victory");
         }
