@@ -11,6 +11,7 @@ public class Collision : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+<<<<<<< Updated upstream
     { }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -22,12 +23,34 @@ public class Collision : MonoBehaviour
         Debug.Log("Collision");
         if (GetComponent<Collider>().tag == "Victory")
 >>>>>>> Stashed changes
+=======
+    {
+//Updated upstream
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Collision");
+//
+        if (collision.gameObject.tag == "Victory")
+
+>>>>>>> Stashed changes
         {
             //SceneManager.LoadScene(sceneName: "Victory");
+        } else if (collision.gameObject.tag == "Respawn")
+        {
+            //Do nothing
         }
         else
         {
             //SceneManager.LoadScene(sceneName: "Level");
+            Reset();
         }
+    }
+
+    public void Reset()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

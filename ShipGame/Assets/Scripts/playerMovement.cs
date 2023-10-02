@@ -9,7 +9,8 @@ public class PlayerMovement : MonoBehaviour
 
     //Assign values here based on how we want the ship to operate. Add other variables that you believe we need for physics
     private float thrustSpeed;
-    private float rotationSpeed;
+    [SerializeField] float rotationSpeed;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -20,14 +21,18 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
         {
             //Rocket thrusts
             Thrust();
         }
         else if (Input.GetKey(KeyCode.S))
         {
+<<<<<<< Updated upstream
             Destablizer();
+=======
+            StablizeThrust();
+>>>>>>> Stashed changes
         }
 
         if (Input.GetKey(KeyCode.A)) {
@@ -38,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
         {
             RotateRight();
         }
+
+        StablizeRotation();
     }
 
     public void Thrust()
@@ -48,19 +55,38 @@ public class PlayerMovement : MonoBehaviour
 
     public void RotateLeft()
     {
+<<<<<<< Updated upstream
         transform.Rotate(0, 0, .2f);
         //Debug.Log("rotating left");
+=======
+        //transform.Rotate(0, 0, .2f);
+        ship.angularVelocity += rotationSpeed;
+        // Debug.Log("rotating left");
+>>>>>>> Stashed changes
     }
 
     public void RotateRight()
     {
+<<<<<<< Updated upstream
         transform.Rotate(0,0,-.2f);
         //Debug.Log("rotating right");
     }
 
     public void Destablizer()
+=======
+        ship.angularVelocity -= rotationSpeed;
+        // Debug.Log("rotating right");
+    }
+
+    public void StablizeThrust()
+>>>>>>> Stashed changes
     {
         ship.AddRelativeForce(Vector2.zero);
         //Debug.Log("Destablizing");
+    }
+
+    public void StablizeRotation()
+    {
+        ship.angularVelocity = ship.angularVelocity / 1.003f;
     }
 }
