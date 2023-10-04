@@ -28,11 +28,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.S))
         {
-<<<<<<< Updated upstream
             Destablizer();
-=======
             StablizeThrust();
->>>>>>> Stashed changes
         }
 
         if (Input.GetKey(KeyCode.A)) {
@@ -55,31 +52,26 @@ public class PlayerMovement : MonoBehaviour
 
     public void RotateLeft()
     {
-<<<<<<< Updated upstream
         transform.Rotate(0, 0, .2f);
         //Debug.Log("rotating left");
-=======
         //transform.Rotate(0, 0, .2f);
         ship.angularVelocity += rotationSpeed;
         // Debug.Log("rotating left");
->>>>>>> Stashed changes
     }
 
     public void RotateRight()
     {
-<<<<<<< Updated upstream
         transform.Rotate(0,0,-.2f);
         //Debug.Log("rotating right");
     }
 
     public void Destablizer()
-=======
+    {
         ship.angularVelocity -= rotationSpeed;
         // Debug.Log("rotating right");
     }
 
     public void StablizeThrust()
->>>>>>> Stashed changes
     {
         ship.AddRelativeForce(Vector2.zero);
         //Debug.Log("Destablizing");
