@@ -8,8 +8,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D ship;
 
     //Assign values here based on how we want the ship to operate. Add other variables that you believe we need for physics
-    private float thrustSpeed;
-    private float rotationSpeed;
+    [SerializeField] float thrustSpeed;
+    [SerializeField] float rotationSpeed;
+    //[SerializeField] float stabalizerForce;
 
     // Start is called before the first frame update
     void Start()
@@ -39,24 +40,26 @@ public class PlayerMovement : MonoBehaviour
         {
             RotateRight();
         }
+
+        autoRotationStablizer();
     }
 
     public void Thrust()
     {
-        ship.AddRelativeForce(Vector2.up / 5);
+        ship.AddRelativeForce((Vector2.up / 5) * thrustSpeed);
         //Debug.Log("Thrusting");
     }
 
     public void RotateLeft()
     {
         //transform.Rotate(0, 0, .2f);
-        ship.angularVelocity += .4f;
+        ship.angularVelocity += rotationSpeed;
         // Debug.Log("rotating left");
     }
 
     public void RotateRight()
     {
-        ship.angularVelocity -= .4f;
+        ship.angularVelocity -= rotationSpeed;
         // Debug.Log("rotating right");
     }
 
@@ -64,5 +67,10 @@ public class PlayerMovement : MonoBehaviour
     {
         ship.velocity = ship.velocity / 1.001f;
         // Debug.Log("Destablizing");
+    }
+
+    public void autoRotationStablizer()
+    {
+        ship.angularVelocity = ship.angularVelocity / 1.003f;
     }
 }
