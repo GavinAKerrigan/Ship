@@ -19,6 +19,6 @@ public class StartButton : MonoBehaviour
 
     public void OnButtonPress()
     {
-        SceneManager.LoadScene(sceneName: "Test Collision");
+        SceneManager.LoadScene(sceneName: "TestCollision");
     }
 }
