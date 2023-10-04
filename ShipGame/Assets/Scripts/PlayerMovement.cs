@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
 
     //Assign values here based on how we want the ship to operate. Add other variables that you believe we need for physics
     private float thrustSpeed;
+    [SerializeField] float rotationSpeed;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -19,13 +21,18 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
         {
             //Rocket thrusts
             Thrust();
         }
         else if (Input.GetKey(KeyCode.S))
         {
+<<<<<<< Updated upstream
             Destablizer();
+=======
+            StablizeThrust();
+>>>>>>> Stashed changes
         }
 
         if (Input.GetKey(KeyCode.A)) {
@@ -36,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
         {
             RotateRight();
         }
+
+        StablizeRotation();
     }
 
     public void Thrust()
@@ -46,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void RotateLeft()
     {
+<<<<<<< Updated upstream
         transform.Rotate(0, 0, .2f);
         //Debug.Log("rotating left");
 =======
