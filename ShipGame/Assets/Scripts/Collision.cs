@@ -18,7 +18,7 @@ public class Collision : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Collision");
         if (collision.gameObject.tag == "Victory")
@@ -27,17 +27,11 @@ public class Collision : MonoBehaviour
             spriteRenderer.color = Color.blue;
             //SceneManager.LoadScene(sceneName: "Victory");
         }
-        else if (collision.gameObject.tag == "Respawn")
-        {
-            Debug.Log("respawn");
-            //Ultimately does nothing
-        }
         else
         {
             Debug.Log("Other");
             spriteRenderer.color = Color.red;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
+            //SceneManager.LoadScene(sceneName: "Level");
         }
     }
 }

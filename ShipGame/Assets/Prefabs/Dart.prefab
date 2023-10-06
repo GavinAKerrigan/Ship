@@ -8,6 +8,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+  - component: {fileID: 2771428284031241410}
+  - component: {fileID: 1661450822988392789}
+  - component: {fileID: 3625505353724414535}
+  - component: {fileID: 4805912744260282747}
+  - component: {fileID: 473831522941490739}
+  - component: {fileID: 2788246880304047530}
+  - component: {fileID: 2204511282338794560}
   m_Layer: 0
   m_Name: Dart
   m_TagString: Untagged
@@ -219,28 +226,7 @@ PolygonCollider2D:
       - {x: -1.22, y: -1.4}
       - {x: -0.81, y: -1.1899999}
   m_UseDelaunayMesh: 0
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024834863161386101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67edcb2ea52dab34cb0ad5b9c3464e01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024834863161386101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b24f0cea390b7c4f8c5d2a8145ffadd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+--- !u!114 &473831522941490739
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,3 +238,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2eb8b8a47079f5429db0d3cf2efdd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2788246880304047530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024834863161386101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67edcb2ea52dab34cb0ad5b9c3464e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2204511282338794560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024834863161386101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b24f0cea390b7c4f8c5d2a8145ffadd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxVelocity: 50
+  maxAngularVelocity: 175
