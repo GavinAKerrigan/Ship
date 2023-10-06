@@ -8,14 +8,15 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D ship;
 
     //Assign values here based on how we want the ship to operate. Add other variables that you believe we need for physics
-    [SerializeField] float thrustSpeed;
-    [SerializeField] float rotationSpeed;
-    //[SerializeField] float stabalizerForce;
+    float thrustSpeed;
+    float rotationSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
         ship = GetComponent<Rigidbody2D>();
+        thrustSpeed = 1.7f;
+        rotationSpeed = 1.2f;
     }
 
     // Update is called once per frame
