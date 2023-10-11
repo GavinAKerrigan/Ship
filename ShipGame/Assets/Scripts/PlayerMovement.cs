@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Thrust()
     {
-        ship.AddRelativeForce(Vector2.up / 5);
+        ship.AddRelativeForce(Vector2.up / 15);
         //Debug.Log("Thrusting");
     }
 
