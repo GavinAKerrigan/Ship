@@ -43,25 +43,21 @@ public class PlayerMovement : MonoBehaviour
     public void Thrust()
     {
         ship.AddRelativeForce(Vector2.up / 15);
-        //Debug.Log("Thrusting");
     }
 
     public void RotateLeft()
     {
         //transform.Rotate(0, 0, .2f);
         ship.angularVelocity += .4f;
-        // Debug.Log("rotating left");
     }
 
     public void RotateRight()
     {
         ship.angularVelocity -= .4f;
-        // Debug.Log("rotating right");
     }
 
     public void Stablizer()
     {
         ship.velocity = ship.velocity / 1.001f;
-        // Debug.Log("Destablizing");
     }
 }

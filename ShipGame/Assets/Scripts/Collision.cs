@@ -18,20 +18,17 @@ public class Collision : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Collision");
         if (collision.gameObject.tag == "Victory")
         {
-            Debug.Log("Victory");
-            spriteRenderer.color = Color.blue;
             //SceneManager.LoadScene(sceneName: "Victory");
         }
         else
         {
-            Debug.Log("Other");
-            spriteRenderer.color = Color.red;
-            //SceneManager.LoadScene(sceneName: "Level1");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Debug.Log(collision.gameObject.name);
         }
     }
 }
