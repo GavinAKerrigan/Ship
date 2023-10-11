@@ -31,7 +31,7 @@ public class Collision : MonoBehaviour
         {
             Debug.Log("Other");
             spriteRenderer.color = Color.red;
-            //SceneManager.LoadScene(sceneName: "Level");
+            //SceneManager.LoadScene(sceneName: "Level1");
         }
     }
 }
