@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 3625505353724414535}
   - component: {fileID: 4805912744260282747}
   - component: {fileID: 473831522941490739}
-  - component: {fileID: 2788246880304047530}
-  - component: {fileID: 2204511282338794560}
   m_Layer: 0
   m_Name: Dart
   m_TagString: Untagged
@@ -29,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024834863161386101}
-  m_LocalRotation: {x: -0, y: -0, z: 0.44100448, w: -0.897505}
-  m_LocalPosition: {x: -2.1, y: -0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.28, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.56, y: 0.98, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -52.336}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1661450822988392789
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -238,29 +236,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2eb8b8a47079f5429db0d3cf2efdd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2788246880304047530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024834863161386101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67edcb2ea52dab34cb0ad5b9c3464e01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2204511282338794560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024834863161386101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b24f0cea390b7c4f8c5d2a8145ffadd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxVelocity: 50
-  maxAngularVelocity: 175
+  thrust: 5
+  rotation: 5
+  stablizer: 5
+  maxVelocity: 5
+  maxAngularVelocity: 5
+  drag: 5
+  angularDrag: 5
+  afterburn: 5
