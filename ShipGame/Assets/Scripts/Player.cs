@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
         else
         {
             spriteRenderer.color = Color.red;
-            //SceneManager.LoadScene(sceneName: "Level");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
