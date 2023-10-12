@@ -100,14 +100,14 @@ public class Player : MonoBehaviour
     }
 
     // collision handler
-    public void OnTriggerEnter2D(Collider2D collision) {
+    public void OnCollisionEnter2D(Collision2D collision) {
 
         if (collision.gameObject.tag == "Victory")
         {
             spriteRenderer.color = Color.green;
             //SceneManager.LoadScene(sceneName: "Victory");
         }
-        else
+        else if (collision.gameObject.tag != "Respawn")
         {
             spriteRenderer.color = Color.red;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
