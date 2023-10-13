@@ -36,11 +36,14 @@ public class Player : MonoBehaviour
                     iLastThrust,            // last thrusting power
                     iAfterburn;             // adjusted afterburner strength (latent thrust)
 
+    private bool stablizerActive;
+
     // Called before the first frame update
     void Awake() {
         // get object references
         ship           = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        stablizerActive = false;
 
         // set up control scheme
         thrustKeys      = new List<KeyCode> { KeyCode.W, KeyCode.I, KeyCode.UpArrow,    KeyCode.Space };
@@ -80,10 +83,10 @@ public class Player : MonoBehaviour
     private void Move() {
         bool thrusting = false;
         bool reversing = false;
-        foreach (KeyCode key in thrustKeys)         if (Input.GetKey(key)) { thrusting = true;                  break; }
-        foreach (KeyCode key in reverseKeys)        if (Input.GetKey(key)) { reversing = true;                  break; }
-        foreach (KeyCode key in rotateLeftKeys)     if (Input.GetKey(key)) { ship.angularVelocity += iRotation; break; }
-        foreach (KeyCode key in rotateRightKeys)    if (Input.GetKey(key)) { ship.angularVelocity -= iRotation; break; }
+        foreach (KeyCode key in thrustKeys) if (Input.GetKey(key)) { thrusting = true; break; }
+        foreach (KeyCode key in reverseKeys) if (Input.GetKey(key)) { reversing = true; break; }
+        foreach (KeyCode key in rotateLeftKeys) if (Input.GetKey(key)) { ship.angularVelocity += iRotation; break; }
+        foreach (KeyCode key in rotateRightKeys) if (Input.GetKey(key)) { ship.angularVelocity -= iRotation; break; }
         foreach (KeyCode key in stabilizeKeys)      if (Input.GetKey(key)) { 
             ship.velocity           *= iStablizer;
             ship.angularVelocity    *= iStablizer;
