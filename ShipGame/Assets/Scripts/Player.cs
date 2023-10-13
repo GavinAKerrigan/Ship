@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Victory")
         {
             spriteRenderer.color = Color.green;
-            //SceneManager.LoadScene(sceneName: "Victory");
+            SceneManager.LoadScene(sceneName: "Menu");
         }
         else if (collision.gameObject.tag != "Respawn")
         {
