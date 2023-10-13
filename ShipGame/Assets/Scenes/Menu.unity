@@ -1282,14 +1282,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Thrust: W, I, Up, or Space
+  m_text: 'Thrust: W, I, UP, or SPACEBAR
 
-    Rotate Left: A, J, or Left
+    Rotate Left: A, J, or LEFT
 
     Rotate
-    Right: D, L, or Right
+    Right: D, L, or RIGHT
 
-    Stablize: S, K, Down or Left Shift
+    Reverse: S, K, or DOWNARROW
+
+    Stablize: LEFTSHIFT
+    or RIGHTSHIFT
 
 '
   m_isRightToLeft: 0
@@ -1300,8 +1303,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280691122
-  m_fontColor: {r: 0.69803923, g: 0.16078432, b: 0.14901961, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
