@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
         Move();
         LimitVelocity();
         LimitAngularVelocity();
+        fuelReset();
     }
 
     // Called once per frame during Update()
@@ -94,12 +95,22 @@ public class Player : MonoBehaviour
         }
         
         // apply thrust or afterburner
-        if (thrusting)  { ship.AddRelativeForce(Vector2.up * iThrust);       iLastThrust  = iThrust; } // default thrust
+        if (thrusting)  { ship.AddRelativeForce(Vector2.up * iThrust); iLastThrust  = iThrust; Fuel.f.fuelDecreaser(); } // default thrust
         else {
             ship.AddRelativeForce(Vector2.up * iLastThrust);  
             iLastThrust *= iAfterburn;  // afterburner
             if (reversing) ship.AddRelativeForce(Vector2.down * iReverse);  // reverse thrust                
-        }   
+        }
+    }
+
+    public void fuelReset ()
+    {
+        if (Fuel.f.fuel <= 0f)
+        {
+            spriteRenderer.color = Color.red;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //Fuel.f.fuel = 100f;
+        }
     }
 
     // collision handler
