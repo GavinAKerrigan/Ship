@@ -53,15 +53,15 @@ public class Player : MonoBehaviour
         stabilizeKeys   = new List<KeyCode> { KeyCode.LeftShift,    KeyCode.RightShift };
 
         // modify ship stats to reflect real values
-        iThrust              = thrust               * 0.08f;
-        iReverse             = iThrust              * 0.2f;
-        iRotation            = rotation             * 0.1f;
-        iStablizer           = 1 - stablizer        * 0.0005f;
-        iMaxVelocity         = maxVelocity          * 2f;
-        iMaxAngularVelocity  = maxAngularVelocity   * 30f;
-        iDrag                = drag                 * 0.2f;
-        iAngularDrag         = angularDrag          * 0.2f;
-        iAfterburn           = 1 - afterburn        * 0.0002f;
+        iThrust              = (thrust               * 0.08f);
+        iReverse             = (iThrust              * 0.2f);
+        iRotation            = (rotation             * 0.1f);
+        iStablizer           = (1 - stablizer        * 0.0005f);
+        iMaxVelocity         = (maxVelocity          * 2f);
+        iMaxAngularVelocity  = (maxAngularVelocity   * 30f);
+        iDrag                = (drag                 * 0.2f);
+        iAngularDrag         = (angularDrag          * 0.2f);
+        iAfterburn           = (1 - afterburn        * 0.0002f);
 
         // apply drag
         ship.drag = iDrag;
@@ -89,17 +89,17 @@ public class Player : MonoBehaviour
         foreach (KeyCode key in rotateLeftKeys) if (Input.GetKey(key)) { ship.angularVelocity += iRotation; break; }
         foreach (KeyCode key in rotateRightKeys) if (Input.GetKey(key)) { ship.angularVelocity -= iRotation; break; }
         foreach (KeyCode key in stabilizeKeys)      if (Input.GetKey(key)) { 
-            ship.velocity           *= iStablizer;
-            ship.angularVelocity    *= iStablizer;
+            ship.velocity           *= iStablizer * Time.deltaTime;
+            ship.angularVelocity    *= iStablizer * Time.deltaTime;
             break;
         }
         
         // apply thrust or afterburner
-        if (thrusting)  { ship.AddRelativeForce(Vector2.up * iThrust); iLastThrust  = iThrust; Fuel.f.fuelDecreaser(); } // default thrust
+        if (thrusting)  { ship.AddRelativeForce(Vector2.up * iThrust * Time.deltaTime); iLastThrust  = iThrust * Time.deltaTime; Fuel.f.fuelDecreaser(); } // default thrust
         else {
-            ship.AddRelativeForce(Vector2.up * iLastThrust);  
-            iLastThrust *= iAfterburn;  // afterburner
-            if (reversing) ship.AddRelativeForce(Vector2.down * iReverse);  // reverse thrust                
+            ship.AddRelativeForce(Vector2.up * iLastThrust * Time.deltaTime);  
+            iLastThrust *= iAfterburn * Time.deltaTime;  // afterburner
+            if (reversing) ship.AddRelativeForce(Vector2.down * iReverse * Time.deltaTime);  // reverse thrust                
         }
     }
 
