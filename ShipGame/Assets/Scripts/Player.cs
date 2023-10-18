@@ -89,17 +89,17 @@ public class Player : MonoBehaviour
         foreach (KeyCode key in rotateLeftKeys) if (Input.GetKey(key)) { ship.angularVelocity += iRotation; break; }
         foreach (KeyCode key in rotateRightKeys) if (Input.GetKey(key)) { ship.angularVelocity -= iRotation; break; }
         foreach (KeyCode key in stabilizeKeys)      if (Input.GetKey(key)) { 
-            ship.velocity           *= iStablizer * Time.deltaTime;
-            ship.angularVelocity    *= iStablizer * Time.deltaTime;
+            ship.velocity           *= iStablizer;
+            ship.angularVelocity    *= iStablizer;
             break;
         }
         
         // apply thrust or afterburner
-        if (thrusting)  { ship.AddRelativeForce(Vector2.up * iThrust * Time.deltaTime); iLastThrust  = iThrust * Time.deltaTime; Fuel.f.fuelDecreaser(); } // default thrust
+        if (thrusting)  { ship.AddRelativeForce(Vector2.up * iThrust); iLastThrust  = iThrust; Fuel.f.fuelDecreaser(); } // default thrust
         else {
-            ship.AddRelativeForce(Vector2.up * iLastThrust * Time.deltaTime);  
-            iLastThrust *= iAfterburn * Time.deltaTime;  // afterburner
-            if (reversing) ship.AddRelativeForce(Vector2.down * iReverse * Time.deltaTime);  // reverse thrust                
+            ship.AddRelativeForce(Vector2.up * iLastThrust);  
+            iLastThrust *= iAfterburn;  // afterburner
+            if (reversing) ship.AddRelativeForce(Vector2.down * iReverse);  // reverse thrust                
         }
     }
 
