@@ -2342,7 +2342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4340559055985366281, guid: a94df20174eb5c34a94617b5e1b5c074, type: 3}
       propertyPath: m_GravityScale
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
