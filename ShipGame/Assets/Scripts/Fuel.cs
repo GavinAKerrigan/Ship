@@ -22,7 +22,7 @@ public class Fuel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fuelDisplay.text = "Fuel: " + fuel;
+        //fuelDisplay.text = "Fuel: " + fuel;
     }
 
     public void fuelDecreaser()
