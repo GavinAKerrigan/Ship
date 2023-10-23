@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 {
     // object reference
     private Rigidbody2D ship;
+    private Effects effects;
     SpriteRenderer spriteRenderer;
 
     // controls references
@@ -36,14 +37,12 @@ public class Player : MonoBehaviour
                     iLastThrust,            // last thrusting power
                     iAfterburn;             // adjusted afterburner strength (latent thrust)
 
-    private bool stablizerActive;
-
     // Called before the first frame update
     void Awake() {
         // get object references
         ship           = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        stablizerActive = false;
+        effects        = GetComponent<Effects>();
 
         // set up control scheme
         thrustKeys      = new List<KeyCode> { KeyCode.W, KeyCode.I, KeyCode.UpArrow,    KeyCode.Space };
@@ -95,7 +94,12 @@ public class Player : MonoBehaviour
         }
         
         // apply thrust or afterburner
-        if (thrusting)  { ship.AddRelativeForce(Vector2.up * iThrust); iLastThrust  = iThrust; Fuel.f.fuelDecreaser(); } // default thrust
+        if (thrusting) {
+            ship.AddRelativeForce(Vector2.up * iThrust);
+            iLastThrust  = iThrust;
+            if (effects) effects.Thrust();
+            // Fuel.f.fuelDecreaser(); // default thrust
+            }
         else {
             ship.AddRelativeForce(Vector2.up * iLastThrust);  
             iLastThrust *= iAfterburn;  // afterburner
@@ -105,12 +109,12 @@ public class Player : MonoBehaviour
 
     public void fuelReset ()
     {
-        if (Fuel.f.fuel <= 0f)
-        {
-            spriteRenderer.color = Color.red;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            //Fuel.f.fuel = 100f;
-        }
+        // if (Fuel.f.fuel <= 0f)
+        // {
+        //     spriteRenderer.color = Color.red;
+        //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //     //Fuel.f.fuel = 100f;
+        // }
     }
 
     // collision handler
