@@ -52,14 +52,14 @@ public class Player : MonoBehaviour
         stabilizeKeys = new List<KeyCode> { KeyCode.S, KeyCode.K, KeyCode.DownArrow };
 
         // modify ship stats to reflect real values
-        iThrust = thrust * 3f * Time.deltaTime;
-        iRotation = rotation * 1.5f * Time.deltaTime;
+        iThrust = thrust * 2.5f * Time.deltaTime;
+        iRotation = rotation * 1.7f * Time.deltaTime;
         iStablizer = 1 - stablizer * 0.008f * Time.deltaTime;
         iMaxVelocity = maxVelocity * 40f * Time.deltaTime;
         iMaxAngularVelocity = maxAngularVelocity * 500f * Time.deltaTime;
         iDrag = drag * 3.2f * Time.deltaTime;
         iAngularDrag = angularDrag * 3.2f * Time.deltaTime;
-        iAfterburn = 1 - afterburn * 0.032f * Time.deltaTime;
+        iAfterburn = 1 - afterburn * 0.028f * Time.deltaTime;
 
         Debug.Log(iThrust);
 
