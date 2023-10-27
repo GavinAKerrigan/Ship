@@ -177,6 +177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8baa4c6c1245dcb438f54b426e9dc038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 1766333529585611298, guid: ff7d2e440b1a21e47b2e1ca357df653f, type: 3}
+  spriteCreationDelay: 10
+  spriteSpawningDistance: 2
 --- !u!212 &1004483727
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -455,7 +458,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
