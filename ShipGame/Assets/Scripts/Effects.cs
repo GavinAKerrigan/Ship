@@ -17,7 +17,7 @@ public class Effects : MonoBehaviour
     [SerializeField] float spriteSpawningDistance = 0f;
 
     [Header("Movement Settings")]
-    [SerializeField] float spriteSpeedFactor = 20f;
+    [SerializeField] float spriteSpeedFactor = 1f;
     [SerializeField] float spriteRandomnessTurn = 0.5f;
     [SerializeField] float spriteRandomnessSpeed = 5f;
 
@@ -57,7 +57,7 @@ public class Effects : MonoBehaviour
         Bounds parentBounds = parentSpriteRenderer.bounds;
 
         // Calculate the position of the particle at the opposite edge of the parent sprite
-        Vector3 particlePosition = transform.position;
+        Vector3 particlePosition = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
         if (useSpawningDistance) particlePosition += transform.up * spriteSpawningDistance * -1f;
 
         // Set the position and rotation of the particle

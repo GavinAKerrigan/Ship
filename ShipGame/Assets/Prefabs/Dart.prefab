@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3625505353724414535}
   - component: {fileID: 4805912744260282747}
   - component: {fileID: 473831522941490739}
+  - component: {fileID: 6146136650228953831}
   m_Layer: 0
   m_Name: Dart
   m_TagString: Untagged
@@ -243,3 +244,29 @@ MonoBehaviour:
   angularDrag: 5
   maxVelocity: 5
   maxAngularVelocity: 5
+  fuel: 0
+  maxFuel: 100
+  thrustCost: 1
+  stabilizeCost: 1
+  fuelDisplay: {fileID: 0}
+--- !u!114 &6146136650228953831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024834863161386101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8baa4c6c1245dcb438f54b426e9dc038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: -3809087770478354164, guid: b4315324594c9d84c8dfd4f4143ef295, type: 3}
+  particleScale: 0.4
+  spawnCount: 10
+  spriteSpawningDistance: 0
+  spriteSpeedFactor: 2
+  spriteRandomnessTurn: 0.5
+  spriteRandomnessSpeed: 5
+  spriteDecayRate: 0.9
+  spriteColor: {r: 0, g: 0.9875145, b: 1, a: 0.1}

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1997851655736855212}
   - component: {fileID: 6323727806378093893}
   - component: {fileID: 4340559055985366281}
+  - component: {fileID: 7062641356899547981}
   m_Layer: 0
   m_Name: Dagger
   m_TagString: Untagged
@@ -106,6 +107,11 @@ MonoBehaviour:
   angularDrag: 3
   maxVelocity: 5
   maxAngularVelocity: 5
+  fuel: 0
+  maxFuel: 100
+  thrustCost: 1
+  stabilizeCost: 1
+  fuelDisplay: {fileID: 0}
 --- !u!60 &6323727806378093893
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -308,3 +314,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7062641356899547981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40847300919120483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8baa4c6c1245dcb438f54b426e9dc038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: -3809087770478354164, guid: b4315324594c9d84c8dfd4f4143ef295, type: 3}
+  particleScale: 1
+  spawnCount: 10
+  spriteSpawningDistance: 0
+  spriteSpeedFactor: 1
+  spriteRandomnessTurn: 0.5
+  spriteRandomnessSpeed: 5
+  spriteDecayRate: 0.9
+  spriteColor: {r: 0, g: 0, b: 0, a: 0.1}

@@ -2672,6 +2672,10 @@ PrefabInstance:
       propertyPath: m_AngularDrag
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6146136650228953831, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
+      propertyPath: spriteSpawningDistance
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
