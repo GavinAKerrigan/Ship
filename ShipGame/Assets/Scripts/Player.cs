@@ -8,41 +8,41 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     // object reference
-    private Rigidbody2D ship;
-    SpriteRenderer spriteRenderer;
+    private Rigidbody2D rb;
+    SpriteRenderer sr;
 
     // controls references
     private List<KeyCode> rotateLeftKeys, rotateRightKeys, stabilizeKeys, thrustKeys;
 
     // serialized ship stats
-    [SerializeField]
-    float thrust,             // thrusting power
-                            rotation,           // turning power
-                            stablizer,          // stabilizing power
-                            maxVelocity,        // maximum velocity
-                            maxAngularVelocity, // maximum turning speed
-                            drag,               // natural slowdown (thrusting)
-                            angularDrag,        // natural slowdown (turning)
-                            afterburn;          // afterburner strength (latent thrust)
+    [Header("Input Fields")]
+    [SerializeField] float  thrust;
+    [SerializeField] float  rotation;
+    [SerializeField] float  stablizer;
+
+    [Header("Physics Fields")]
+    [SerializeField] float  drag;
+    [SerializeField] float  angularDrag;
+    [SerializeField] float  maxVelocity;
+    [SerializeField] float  maxAngularVelocity;
+
     // internal ship stats
-    private float iThrust,                // adjusted thrusting power
+    private float   iThrust,                // adjusted thrusting power
                     iRotation,              // adjusted turning power
                     iStablizer,             // adjusted stabilizing power
                     iMaxVelocity,           // adjusted maximum velocity
                     iMaxAngularVelocity,    // adjusted maximum turning speed
                     iDrag,                  // adjusted natural slowdown (thrusting)
                     iAngularDrag,           // adjusted natural slowdown (turning)
-                    iLastThrust,            // last thrusting power
-                    iAfterburn;             // adjusted afterburner strength (latent thrust)
+                    iLastThrust;            // last thrusting power
 
     private bool stablizerActive;
 
-    // Called before the first frame update
     void Awake()
     {
         // get object references
-        ship = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         stablizerActive = false;
 
         // set up control scheme
@@ -51,64 +51,66 @@ public class Player : MonoBehaviour
         rotateRightKeys = new List<KeyCode> { KeyCode.D, KeyCode.L, KeyCode.RightArrow };
         stabilizeKeys = new List<KeyCode> { KeyCode.S, KeyCode.K, KeyCode.DownArrow };
 
-        // modify ship stats to reflect real values
-        iThrust = thrust * 2.5f * Time.deltaTime;
-        iRotation = rotation * 1.7f * Time.deltaTime;
-        iStablizer = 1 - stablizer * 0.008f * Time.deltaTime;
-        iMaxVelocity = maxVelocity * 40f * Time.deltaTime;
-        iMaxAngularVelocity = maxAngularVelocity * 500f * Time.deltaTime;
-        iDrag = drag * 3.2f * Time.deltaTime;
-        iAngularDrag = angularDrag * 3.2f * Time.deltaTime;
-        iAfterburn = 1 - afterburn * 0.028f * Time.deltaTime;
+        FixStats();
 
         Debug.Log(iThrust);
 
         // apply drag
-        ship.drag = iDrag;
-        ship.angularDrag = iAngularDrag;
+        rb.drag = iDrag;
+        rb.angularDrag = iAngularDrag;
     }
 
-    // Called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Move();
         LimitVelocity();
         LimitAngularVelocity();
-        fuelReset();
+        FuelReset();
     }
 
-    // Called once per frame during Update()
-    private void LimitVelocity() { ship.velocity = Vector2.ClampMagnitude(ship.velocity, iMaxVelocity); }
-    private void LimitAngularVelocity() { ship.angularVelocity = Math.Clamp(ship.angularVelocity, -iMaxAngularVelocity, iMaxAngularVelocity); }
+    // modify ship stats to reflect real values
+    private void FixStats() 
+    {
+        iThrust = thrust * 50f;
+        iRotation = rotation * 1.5f;
+        iStablizer = 1 - stablizer * 0.01f;
+        iMaxVelocity = maxVelocity * 5000f;
+        iMaxAngularVelocity = maxAngularVelocity * 100f;
+        iDrag = drag * 0.1f;
+        iAngularDrag = angularDrag * 0.3f;
+    }
+
+    private void LimitVelocity() { rb.velocity = Vector2.ClampMagnitude(rb.velocity, iMaxVelocity); }
+    private void LimitAngularVelocity() { rb.angularVelocity = Math.Clamp(rb.angularVelocity, -iMaxAngularVelocity, iMaxAngularVelocity); }
 
     /// interperates the controls and calls the appropriate functions
     private void Move()
     {
         bool thrusting = false;
         foreach (KeyCode key in thrustKeys) if (Input.GetKey(key)) { thrusting = true; break; }
-        foreach (KeyCode key in rotateLeftKeys) if (Input.GetKey(key)) { ship.angularVelocity += iRotation; break; }
-        foreach (KeyCode key in rotateRightKeys) if (Input.GetKey(key)) { ship.angularVelocity -= iRotation; break; }
+        foreach (KeyCode key in rotateLeftKeys) if (Input.GetKey(key)) { rb.angularVelocity += iRotation; break; }
+        foreach (KeyCode key in rotateRightKeys) if (Input.GetKey(key)) { rb.angularVelocity -= iRotation; break; }
         foreach (KeyCode key in stabilizeKeys) if (Input.GetKey(key))
             {
-                ship.velocity *= iStablizer;
-                ship.angularVelocity *= iStablizer;
+                rb.velocity *= iStablizer;
+                rb.angularVelocity *= iStablizer;
                 break;
             }
 
-        // apply thrust or afterburner
-        if (thrusting) { ship.AddRelativeForce(Vector2.up * iThrust); iLastThrust = iThrust; Fuel.f.fuelDecreaser(); } // default thrust
-        else
+        // apply thrust
+        if (thrusting)
         {
-            ship.AddRelativeForce(Vector2.up * iLastThrust);
-            iLastThrust *= iAfterburn;  // afterburner
+            rb.AddRelativeForce(Vector2.up * iThrust * Time.deltaTime);
+            iLastThrust = iThrust;
+            Fuel.f.FuelDecreaser();
         }
     }
 
-    public void fuelReset()
+    public void FuelReset()
     {
         if (Fuel.f.fuel <= 0f)
         {
-            spriteRenderer.color = Color.red;
+            sr.color = Color.red;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             //Fuel.f.fuel = 100f;
         }
@@ -117,24 +119,7 @@ public class Player : MonoBehaviour
     // collision handler
     public void OnCollisionEnter2D(Collision2D collision)
     {
-
-        if (collision.gameObject.tag == "Victory")
-        {
-            spriteRenderer.color = Color.green;
-            SceneManager.LoadScene(sceneName: "Menu");
-        }
-        else if (collision.gameObject.tag != "Respawn")
-        {
-            spriteRenderer.color = Color.red;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            iThrust *= 10;
-            iRotation *= 10;
-            iStablizer *= 10;
-            iMaxVelocity *= 10;
-            iMaxAngularVelocity *= 10;
-            iDrag *= 10;
-            iAngularDrag *= 10;
-            iAfterburn *= 10;
-        }
+        if (collision.gameObject.tag == "Victory") SceneManager.LoadScene(sceneName: "Menu");
+        else if (collision.gameObject.tag != "Respawn") SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
