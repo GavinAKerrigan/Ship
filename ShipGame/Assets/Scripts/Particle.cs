@@ -5,19 +5,22 @@ using UnityEngine;
 public class Particle : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public SpriteRenderer spriteRenderer;
+    public SpriteRenderer sr;
+    private float decay;
 
-    public void Initialize() {
+    public void Initialize(float decayRate, Color color) {
         // create particle
         rb = gameObject.AddComponent<Rigidbody2D>();
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        sr = gameObject.GetComponent<SpriteRenderer>();
+        decay = decayRate;
         rb.gravityScale = 0;
 
         // set particle graphics
-        spriteRenderer.color = new Color(1f, 0.5f, 0f, 0.1f);
+        sr.color = color;
     }
 
     public void FixedUpdate() {
-        rb.velocity *= 0.99f;
+        rb.velocity *= decay;
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, sr.color.a * decay);
     }
 }

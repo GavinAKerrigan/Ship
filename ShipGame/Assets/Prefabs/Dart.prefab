@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1661450822988392789
 SpriteRenderer:
@@ -237,11 +237,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrust: 5
-  reverse: 0
   rotation: 5
-  stablizer: 5
-  maxVelocity: 5
-  maxAngularVelocity: 5
+  stabilizer: 5
   drag: 5
   angularDrag: 5
-  afterburn: 5
+  maxVelocity: 5
+  maxAngularVelocity: 5

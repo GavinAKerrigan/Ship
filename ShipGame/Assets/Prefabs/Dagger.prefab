@@ -100,14 +100,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrust: 3
-  reverse: 3
   rotation: 3
-  stablizer: 3
-  maxVelocity: 5
-  maxAngularVelocity: 5
+  stabilizer: 3
   drag: 3
   angularDrag: 3
-  afterburn: 10
+  maxVelocity: 5
+  maxAngularVelocity: 5
 --- !u!60 &6323727806378093893
 PolygonCollider2D:
   m_ObjectHideFlags: 0
