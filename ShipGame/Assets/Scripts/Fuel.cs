@@ -12,20 +12,18 @@ public class Fuel : MonoBehaviour
     public TextMeshProUGUI fuelDisplay;
 
     public static Fuel f;
-    // Start is called before the first frame update
     void Start()
     {
         f = this;
         decreaser = baseInterval;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        fuelDisplay.text = "Fuel: " + fuel;
+        //fuelDisplay.text = "Fuel: " + fuel;
     }
 
-    public void fuelDecreaser()
+    public void FuelDecreaser()
     {
         if (decreaser > 0)
         {
