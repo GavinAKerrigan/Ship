@@ -19,7 +19,6 @@ public class QuitButton : MonoBehaviour
 
     public void OnButtonPress()
     {
-        //Application.Quit();
-        SceneManager.LoadScene(sceneName: "Level2");
+        Application.Quit();
     }
 }
