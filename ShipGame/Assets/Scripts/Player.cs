@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
     // collision handler
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Victory") LoadScene("Menu");
+        if (collision.gameObject.tag == "Victory") LoadScene("LevelSelect");
         else if (collision.gameObject.tag != "Respawn") LoadScene();
     }
 
