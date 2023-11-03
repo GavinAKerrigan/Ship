@@ -6,7 +6,6 @@ public class Effects : MonoBehaviour
 {
     // particles
     private List<Particle> particles = new List<Particle>(); 
-    private int spriteCreationDelayCounter = 0;
 
     [Header("Prefab Settings")]
     [SerializeField] Particle particlePrefab;
