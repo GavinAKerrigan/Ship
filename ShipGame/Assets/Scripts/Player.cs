@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
     // checks fuel and updates the fuel display
     private void CheckFuel()
     {
-        // fuelDisplay.text = "Fuel: " + Math.Round(maxFuel - fuel, 2) + "%";
+        fuelDisplay.text = "Fuel: " + (100f - Math.Round(maxFuel - fuel, 2)) + "%";
         if (fuel <= 0) LoadScene();
     }
 
