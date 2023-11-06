@@ -33,6 +33,10 @@ public class Player : MonoBehaviour
     [SerializeField] float stabilizeCost = 1f;      // "
     [SerializeField] TextMeshProUGUI fuelDisplay;
 
+    [Header("Special Stats")]
+    [SerializeField] bool alwaysThrusting = false;
+    [SerializeField] public bool isSelectable = false;
+
 
     void Awake()
     {
@@ -49,10 +53,17 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move();
-        LimitVelocity();
-        LimitAngularVelocity();
-        CheckFuel();
+        if (!isSelectable)
+        {
+            Move();
+            LimitVelocity();
+            LimitAngularVelocity();
+            CheckFuel();
+        }
+        else
+        {
+            OnButtonPress();
+        }
     }
 
     // modify ship stats to reflect real values
@@ -89,6 +100,7 @@ public class Player : MonoBehaviour
 
         if (rawV > 0)
         {
+            if (alwaysThrusting) { return; }
             // thrust
             rb.AddRelativeForce(Vector2.up * rawV * iThrust * Time.deltaTime);
 
@@ -101,6 +113,7 @@ public class Player : MonoBehaviour
 
         else if (rawV < 0)
         {
+            if (alwaysThrusting) { return; }
             // stabilize
             rb.velocity -= rb.velocity.normalized * iStabilizer * Time.deltaTime;
             rb.angularVelocity -= rb.angularVelocity * iStabilizer * Time.deltaTime;
@@ -124,6 +137,13 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Victory") LoadScene("LevelSelect");
         else if (collision.gameObject.tag != "Respawn") LoadScene();
+    }
+
+    public void OnButtonPress()
+    {
+        isSelectable = false;
+        GameObject.Find("Starting").GetComponent<Selected>().ship = this.gameObject;
+        isSelectable = true;
     }
 
     // loads a given scene, or the current scene if not given a scene name

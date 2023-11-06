@@ -5,8 +5,8 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] bool followPlayer;
-    [SerializeField] GameObject target;
     [SerializeField] Vector3 offset;
+    public GameObject target;
     Vector3 cameraPosition;
 
     // Update is called once per frame
