@@ -117,7 +117,10 @@ public class Player : MonoBehaviour
     // checks fuel and updates the fuel display
     private void CheckFuel()
     {
-        fuelDisplay.text = "Fuel: " + (100f - Math.Round(maxFuel - fuel, 2)) + "%";
+        int percent = (int)(fuel / maxFuel * 100);
+        fuelDisplay.text = "Fuel: " + percent + "%";
+        fuelDisplay.color = Color.Lerp(Color.red, Color.green, percent / 100f);
+
         if (fuel <= 0) Reload();
     }
 
