@@ -16,7 +16,7 @@ public class Selected : MonoBehaviour
     {
         if(ship == null) { ship = defaultShip; }
         GameObject instShip = Instantiate(ship, this.gameObject.transform.position, this.gameObject.transform.rotation);
-        mainCamera.GetComponent<CameraFollow>().target = instShip;
+        if (mainCamera) { mainCamera.GetComponent<CameraFollow>().target = instShip; }
     }
 
     // Update is called once per frame

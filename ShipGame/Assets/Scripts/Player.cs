@@ -35,7 +35,6 @@ public class Player : MonoBehaviour
 
     [Header("Special Stats")]
     [SerializeField] bool alwaysThrusting = false;
-    [SerializeField] public bool isSelectable = false;
 
 
     void Awake()
@@ -53,17 +52,10 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isSelectable)
-        {
-            Move();
-            LimitVelocity();
-            LimitAngularVelocity();
-            CheckFuel();
-        }
-        else
-        {
-            OnButtonPress();
-        }
+        Move();
+        LimitVelocity();
+        LimitAngularVelocity();
+        CheckFuel();
     }
 
     // modify ship stats to reflect real values
@@ -137,13 +129,6 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Victory") LoadScene("LevelSelect");
         else if (collision.gameObject.tag != "Respawn") LoadScene();
-    }
-
-    public void OnButtonPress()
-    {
-        isSelectable = false;
-        GameObject.Find("Starting").GetComponent<Selected>().ship = this.gameObject;
-        isSelectable = true;
     }
 
     // loads a given scene, or the current scene if not given a scene name
