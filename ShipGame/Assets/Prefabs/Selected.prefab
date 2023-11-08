@@ -97,4 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ea4460576a56a246a0c3de18c91512c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  defaultShip: {fileID: 1024834863161386101, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
   ship: {fileID: 0}
