@@ -2135,7 +2135,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228682144}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -10, y: 7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3572,7 +3572,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1851236762512422868, guid: 954816eac3a29984e996d4956151d170, type: 3}
       propertyPath: m_Name
-      value: Selected
+      value: Starting
       objectReference: {fileID: 0}
     - target: {fileID: 6966710654627560692, guid: 954816eac3a29984e996d4956151d170, type: 3}
       propertyPath: m_RootOrder
@@ -3619,13 +3619,17 @@ PrefabInstance:
       value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 8899506478088225755, guid: 954816eac3a29984e996d4956151d170, type: 3}
-      propertyPath: ship
-      value: 
-      objectReference: {fileID: 1024834863161386101, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
-    - target: {fileID: 8899506478088225755, guid: 954816eac3a29984e996d4956151d170, type: 3}
       propertyPath: camera
       value: 
       objectReference: {fileID: 1228682144}
+    - target: {fileID: 8899506478088225755, guid: 954816eac3a29984e996d4956151d170, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1228682144}
+    - target: {fileID: 8899506478088225755, guid: 954816eac3a29984e996d4956151d170, type: 3}
+      propertyPath: defaultShip
+      value: 
+      objectReference: {fileID: 1024834863161386101, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

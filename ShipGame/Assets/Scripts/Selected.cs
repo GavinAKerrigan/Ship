@@ -6,15 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class Selected : MonoBehaviour
 {
-    //[SerializeField] GameObject mainCamera;
-    [SerializeField] public GameObject ship;
+    [SerializeField] GameObject mainCamera;
+    [SerializeField] GameObject defaultShip;
+    public GameObject ship;
+
 
     // Start is called before the first frame update
     void Awake()
     {
-        GameObject.Find("Starting").GetComponent<Selected>().ship = this.gameObject;
-        Instantiate(ship, this.gameObject.transform.position, this.gameObject.transform.rotation);
-        //mainCamera.GetComponent<CameraFollow>().target = GameObject.Find(ship.name);
+        if(ship == null) { ship = defaultShip; }
+        GameObject instShip = Instantiate(ship, this.gameObject.transform.position, this.gameObject.transform.rotation);
+        mainCamera.GetComponent<CameraFollow>().target = instShip;
     }
 
     // Update is called once per frame

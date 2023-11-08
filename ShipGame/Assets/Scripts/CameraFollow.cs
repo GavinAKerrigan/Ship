@@ -13,6 +13,7 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         if (!followPlayer) return;
+        else if (target == null) return;
         Vector3 cameraPosition = offset + target.transform.position;
         cameraPosition.z = -10;
         transform.position = cameraPosition;
