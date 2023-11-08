@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     [SerializeField] float stabilizeCost = 1f;      // "
     [SerializeField] TextMeshProUGUI fuelDisplay;
 
+    [Header("Loading Fields")]
+    [SerializeField] string nextScene = "Level Select";
 
     void Awake()
     {
@@ -116,29 +118,16 @@ public class Player : MonoBehaviour
     private void CheckFuel()
     {
         fuelDisplay.text = "Fuel: " + (100f - Math.Round(maxFuel - fuel, 2)) + "%";
-        if (fuel <= 0) LoadScene();
+        if (fuel <= 0) Reload();
     }
 
     // collision handler
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Victory") LoadScene("LevelSelect");
-        else if (collision.gameObject.tag != "Respawn") LoadScene();
+        if (collision.gameObject.tag == "Victory") SceneManager.LoadScene(nextScene);
+        else if (collision.gameObject.tag != "Respawn") Reload();
     }
 
     // loads a given scene, or the current scene if not given a scene name
-    private void LoadScene() { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
-    private void LoadScene(String sceneName) 
-    {
-        switch (sceneName)
-        {
-            case "Menu":
-                SceneManager.LoadScene(sceneName);
-                break;
-            default:
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                break;
-        }
-    }
-
+    private void Reload() { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
 }

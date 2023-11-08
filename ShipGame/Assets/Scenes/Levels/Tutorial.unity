@@ -7214,7 +7214,7 @@ GameObject:
   - component: {fileID: 807955022}
   - component: {fileID: 807955024}
   m_Layer: 0
-  m_Name: Square (12)
+  m_Name: Return
   m_TagString: Victory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
