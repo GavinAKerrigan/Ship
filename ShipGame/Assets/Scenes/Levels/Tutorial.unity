@@ -11015,9 +11015,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 473831522941490739, guid: 9358f60a066d3074488bf0ef2d692d26, type: 3}
+      propertyPath: thrustCost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 473831522941490739, guid: 9358f60a066d3074488bf0ef2d692d26, type: 3}
       propertyPath: fuelDisplay
       value: 
       objectReference: {fileID: 1920073784}
+    - target: {fileID: 473831522941490739, guid: 9358f60a066d3074488bf0ef2d692d26, type: 3}
+      propertyPath: stabilizeCost
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1024834863161386101, guid: 9358f60a066d3074488bf0ef2d692d26, type: 3}
       propertyPath: m_Name
       value: Plastic

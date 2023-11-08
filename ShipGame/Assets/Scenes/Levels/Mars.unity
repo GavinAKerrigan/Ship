@@ -640,9 +640,17 @@ PrefabInstance:
       value: Asteroids
       objectReference: {fileID: 0}
     - target: {fileID: 4123045522694352050, guid: c5e9f679cf8be034bb4950e5494c9d6f, type: 3}
+      propertyPath: thrustCost
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123045522694352050, guid: c5e9f679cf8be034bb4950e5494c9d6f, type: 3}
       propertyPath: fuelDisplay
       value: 
       objectReference: {fileID: 1619486379}
+    - target: {fileID: 4123045522694352050, guid: c5e9f679cf8be034bb4950e5494c9d6f, type: 3}
+      propertyPath: stabilizeCost
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
