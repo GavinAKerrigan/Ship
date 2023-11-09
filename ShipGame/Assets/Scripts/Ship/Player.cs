@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    // object references
+    //  -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   Properties
     private Rigidbody2D rb;
     private Effects effects;
     SpriteRenderer sr;
@@ -36,31 +36,19 @@ public class Player : MonoBehaviour
     [Header("Loading Fields")]
     [SerializeField] string nextScene = "Level Select";
 
-    void Awake()
-    {
+
+
+    //  -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   Awake Functions
+    void Awake() {
         // get object references
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-
-        // set up ship stats
-        FixStats();
-
-        // set up effects
         effects = GetComponent<Effects>();
-    }
 
-    void FixedUpdate()
-    {
-        Move();
-        LimitVelocity();
-        LimitAngularVelocity();
-        CheckFuel();
+        FixStats();
     }
-
-    // modify ship stats to reflect real values
-    private void FixStats() 
-    {
-        // fix stats
+    private void FixStats() {
+        // translate given stats to internal stats
         iThrust = thrust * 50f;
         iRotation = rotation * 100f;
         iStabilizer = stabilizer * 0.75f;
@@ -77,60 +65,79 @@ public class Player : MonoBehaviour
         fuel = maxFuel;
     }
 
-    private void LimitVelocity() { rb.velocity = Vector2.ClampMagnitude(rb.velocity, iMaxVelocity); }
-    private void LimitAngularVelocity() { rb.angularVelocity = Math.Clamp(rb.angularVelocity, -iMaxAngularVelocity, iMaxAngularVelocity); }
 
-    /// interperates the controls and calls the appropriate functions
-    private void Move()
-    {
-        // rotation (inverted for clockwise positive motion)
-        rb.angularVelocity += Input.GetAxisRaw("Horizontal") * iRotation * Time.deltaTime * -1f;
 
-        // get raw input
-        float rawV = Input.GetAxisRaw("Vertical");
-
-        if (rawV > 0)
-        {
-            // thrust
-            rb.AddRelativeForce(Vector2.up * rawV * iThrust * Time.deltaTime);
-
-            // effects
-            effects.Thrust(transform.up * rawV * iThrust * Time.deltaTime);
-
-            // subtract fuel
-            fuel -= thrustCost * Time.deltaTime;
-        }
-
-        else if (rawV < 0)
-        {
-            // stabilize
-            rb.velocity -= rb.velocity.normalized * iStabilizer * Time.deltaTime;
-            rb.angularVelocity -= rb.angularVelocity * iStabilizer * Time.deltaTime;
-
-            effects.Stabilize(rb.velocity.magnitude + 1);
-
-            // subtract fuel
-            fuel -= stabilizeCost * Time.deltaTime;
-        }
+    //  -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   Update Functions
+    void FixedUpdate() {
+        Movement();
+        CheckFuel();
     }
-
-    // checks fuel and updates the fuel display
-    private void CheckFuel()
-    {
+    private void CheckFuel() {
+        // update fuel display
         int percent = (int)(fuel / maxFuel * 100);
         fuelDisplay.text = "Fuel: " + percent + "%";
         fuelDisplay.color = Color.Lerp(Color.red, Color.green, percent / 100f);
 
+        // check for out of fuel
         if (fuel <= 0) Reload();
     }
+    private void Movement() {
+        Rotate();
+        if (Input.GetAxisRaw("Vertical") > 0) Thrust();
+        else if (Input.GetAxisRaw("Vertical") < 0) Stabilize();
+        LimitVelocity();
+        LimitAngularVelocity();
+    }
 
-    // collision handler
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
+
+
+    //  -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   Movement Functions
+    private void LimitVelocity() {
+        // limit the velocity of the rigidbody to the internal max velocity
+        rb.velocity = Vector2.ClampMagnitude(rb.velocity, iMaxVelocity);
+    }
+    private void LimitAngularVelocity() {
+        // limit the angular velocity of the rigidbody to the internal max velocity
+        rb.angularVelocity = Math.Clamp(rb.angularVelocity, -iMaxAngularVelocity, iMaxAngularVelocity);
+    }
+    private void Rotate() {
+        // apply rotation to the rigidbody based on horizontal input axis
+        rb.angularVelocity += Input.GetAxisRaw("Horizontal") * iRotation * Time.deltaTime * -1f;
+    }
+    private void Stabilize() {
+        // stabilize the rigidbody's velocity and angular velocity
+        rb.velocity -= rb.velocity.normalized * iStabilizer * Time.deltaTime;
+        rb.angularVelocity -= rb.angularVelocity * iStabilizer * Time.deltaTime;
+
+        // if the rigidbody is close enough to 0, set it to 0 to avoid jittering 
+        if (rb.velocity.magnitude < 0.01f) rb.velocity = Vector2.zero;
+        if (rb.angularVelocity < 0.01f && rb.angularVelocity > -0.01f) rb.angularVelocity = 0;
+
+        // add effects
+        effects.Stabilize(rb.velocity.magnitude + 1);
+
+        // apply fuel cost
+        fuel -= stabilizeCost * Time.deltaTime;
+    }
+    private void Thrust() {
+        // apply force to the rigidbody based on vertical input axis
+        rb.AddRelativeForce(Vector2.up * iThrust * Time.deltaTime);
+
+        // add effects
+        effects.Thrust(transform.up * iThrust * Time.deltaTime);
+
+        // apply fuel cost
+        fuel -= thrustCost * Time.deltaTime;
+    }
+    
+
+
+    //  -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   Collision Functions
+    public void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Victory") SceneManager.LoadScene(nextScene);
         else if (collision.gameObject.tag != "Respawn") Reload();
     }
-
-    // loads a given scene, or the current scene if not given a scene name
-    private void Reload() { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
+    private void Reload() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
