@@ -26,10 +26,12 @@ public class Timer : MonoBehaviour
         timerStart = false;
     }
     // Update is called once per frame
-    public void BeginTimer()
+    public void BeginTimer(string scene)
     {
         timerStart = true;
         elapsedTime = 0f;
+
+        StartCoroutine(UpdateTimer());
     }
 
     public void EndTimer()

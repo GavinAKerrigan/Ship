@@ -10,6 +10,6 @@ public class LaunchScene : MonoBehaviour
     {
         if (sceneName == "Quit") Application.Quit();
         SceneManager.LoadScene(sceneName);
-        Timer.timer.BeginTimer();
+        Timer.timer.BeginTimer(sceneName);
     }
 }
