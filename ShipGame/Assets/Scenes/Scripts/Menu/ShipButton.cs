@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DartSelect : MonoBehaviour
+public class ShipButton : MonoBehaviour
 {
+    [SerializeField] GameObject ship;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,8 +14,12 @@ public class DartSelect : MonoBehaviour
     }
 
     // Update is called once per frame
+    void Update()
+    {
+        
+    }
     public void OnButtonPress()
     {
-        SceneManager.LoadScene(sceneName: "Level3");
+        GameObject.Find("Selected").GetComponent<Selected>().ship = ship;
     }
 }

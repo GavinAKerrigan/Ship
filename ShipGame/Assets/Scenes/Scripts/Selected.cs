@@ -8,19 +8,25 @@ public class Selected : MonoBehaviour
 {
     [SerializeField] GameObject mainCamera;
     [SerializeField] GameObject defaultShip;
+    GameObject instShip;
     public GameObject ship;
 
 
     // Start is called before the first frame update
     void Awake()
     {
-        if(ship == null) { ship = defaultShip; }
-        GameObject instShip = Instantiate(ship, this.gameObject.transform.position, this.gameObject.transform.rotation);
+        if (ship == null) { ship = defaultShip; }
+        instShip = Instantiate(ship, this.gameObject.transform.position, this.gameObject.transform.rotation);
         if (mainCamera) { mainCamera.GetComponent<CameraFollow>().target = instShip; }
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*if(SceneManager.GetActiveScene().name == "ShipSelect")
+        {
+            Destroy(instShip);
+            CreateShip();
+        }*/
     }
 }
