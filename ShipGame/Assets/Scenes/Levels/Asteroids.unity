@@ -34463,6 +34463,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 473831522941490739, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
+      propertyPath: thrustCost
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 473831522941490739, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
       propertyPath: angularDrag
       value: 9
       objectReference: {fileID: 0}
@@ -34470,6 +34474,10 @@ PrefabInstance:
       propertyPath: fuelDisplay
       value: 
       objectReference: {fileID: 115037237}
+    - target: {fileID: 473831522941490739, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
+      propertyPath: stabilizeCost
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1024834863161386101, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
       propertyPath: m_Name
       value: Angel
