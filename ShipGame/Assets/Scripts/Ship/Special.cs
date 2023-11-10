@@ -126,7 +126,7 @@ public class Special : MonoBehaviour
         public override void Awake() 
         { 
             cooldown = 5f;
-            duration = 1f;
+            duration = 0.5f;
             type = inputType.Hold;
             base.Awake();
         }
