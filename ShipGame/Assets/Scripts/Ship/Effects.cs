@@ -26,7 +26,8 @@ public class Effects : MonoBehaviour
     [Header("Color Settings")]
     [SerializeField] Color spriteColor = new Color(1f, 0.5f, 0f, 0.1f);
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         for (int i = 0; i < particles.Count; i++) {
             if (particles[i].rb.velocity.magnitude < 0.1f) {
                 Destroy(particles[i].gameObject);
@@ -35,7 +36,11 @@ public class Effects : MonoBehaviour
         }
     }
 
-    public void Thrust(Vector2 thrust) { for (int i = 0; i < spawnCount; i++) CreateParticle(thrust); }
+    public void Thrust(Vector2 thrust)
+    { 
+        for (int i = 0; i < spawnCount; i++) CreateParticle(thrust); 
+    }
+
     public void Stabilize(float magnitude)
     {
         for (int i = 0; i < spawnCount; i++) 
@@ -47,7 +52,8 @@ public class Effects : MonoBehaviour
         }
     }
 
-    private void CreateParticle(Vector2 thrust, bool useSpawningDistance = true) {
+    private void CreateParticle(Vector2 thrust, bool useSpawningDistance = true)
+    {
         Particle particle = Instantiate(particlePrefab);
         particle.Initialize(spriteDecayRate, spriteColor);
 

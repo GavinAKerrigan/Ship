@@ -6,40 +6,40 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class Player : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     //  -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   Properties
     private Rigidbody2D rb;
     private Effects effects;
     SpriteRenderer sr;
 
-    [Header("Input Fields")]
+    [Header("Input")]
     [SerializeField] float  thrust = 5f;
     [SerializeField] float  rotation = 5f;
     [SerializeField] float  stabilizer = 5f;
     private float iThrust, iRotation, iStabilizer;
 
-    [Header("Physics Fields")]
+    [Header("Physics")]
     [SerializeField] float  drag = 5f;
     [SerializeField] float  angularDrag = 5f;
     [SerializeField] float  maxVelocity = 5f;
     [SerializeField] float  maxAngularVelocity = 5f;
     private float iDrag, iAngularDrag, iMaxVelocity, iMaxAngularVelocity;
+    public bool paused = false;
 
-    [Header("Fuel Fields")]
+    [Header("Fuel")]
     [SerializeField] float fuel;
     [SerializeField] float maxFuel = 100f;
     [SerializeField] float thrustCost = 1f;         // cost per second
     [SerializeField] float stabilizeCost = 1f;      // "
     [SerializeField] TextMeshProUGUI fuelDisplay;
 
-    [Header("Loading Fields")]
+    [Header("Loading")]
     [SerializeField] string nextScene = "Level Select";
 
-
-
     //  -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   Awake Functions
-    void Awake() {
+    void Awake() 
+    {
         // get object references
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
@@ -47,7 +47,9 @@ public class Player : MonoBehaviour
 
         FixStats();
     }
-    private void FixStats() {
+
+    private void FixStats() 
+    {
         // translate given stats to internal stats
         iThrust = thrust * 50f;
         iRotation = rotation * 100f;
@@ -68,11 +70,15 @@ public class Player : MonoBehaviour
 
 
     //  -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   Update Functions
-    void FixedUpdate() {
-        Movement();
+    void FixedUpdate() 
+    {
+        if (paused) return;
+        Move();
         CheckFuel();
     }
-    private void CheckFuel() {
+
+    private void CheckFuel() 
+    {
         // update fuel display
         int percent = (int)(fuel / maxFuel * 100);
         fuelDisplay.text = "Fuel: " + percent + "%";
@@ -81,7 +87,9 @@ public class Player : MonoBehaviour
         // check for out of fuel
         if (fuel <= 0) Reload();
     }
-    private void Movement() {
+
+    private void Move() 
+    {
         Rotate();
         if (Input.GetAxisRaw("Vertical") > 0) Thrust();
         else if (Input.GetAxisRaw("Vertical") < 0) Stabilize();
@@ -92,19 +100,26 @@ public class Player : MonoBehaviour
 
 
     //  -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   Movement Functions
-    private void LimitVelocity() {
+    private void LimitVelocity() 
+    {
         // limit the velocity of the rigidbody to the internal max velocity
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, iMaxVelocity);
     }
-    private void LimitAngularVelocity() {
+
+    private void LimitAngularVelocity() 
+    {
         // limit the angular velocity of the rigidbody to the internal max velocity
         rb.angularVelocity = Math.Clamp(rb.angularVelocity, -iMaxAngularVelocity, iMaxAngularVelocity);
     }
-    private void Rotate() {
+
+    private void Rotate() 
+    {
         // apply rotation to the rigidbody based on horizontal input axis
         rb.angularVelocity += Input.GetAxisRaw("Horizontal") * iRotation * Time.deltaTime * -1f;
     }
-    private void Stabilize() {
+
+    private void Stabilize() 
+    {
         // stabilize the rigidbody's velocity and angular velocity
         rb.velocity -= rb.velocity.normalized * iStabilizer * Time.deltaTime;
         rb.angularVelocity -= rb.angularVelocity * iStabilizer * Time.deltaTime;
@@ -119,7 +134,9 @@ public class Player : MonoBehaviour
         // apply fuel cost
         fuel -= stabilizeCost * Time.deltaTime;
     }
-    private void Thrust() {
+
+    private void Thrust() 
+    {
         // apply force to the rigidbody based on vertical input axis
         rb.AddRelativeForce(Vector2.up * iThrust * Time.deltaTime);
 
@@ -133,11 +150,15 @@ public class Player : MonoBehaviour
 
 
     //  -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   Collision Functions
-    public void OnCollisionEnter2D(Collision2D collision) {
+    public void OnCollisionEnter2D(Collision2D collision) 
+    {
+        if (paused) return;
         if (collision.gameObject.tag == "Victory") SceneManager.LoadScene(nextScene);
         else if (collision.gameObject.tag != "Respawn") Reload();
     }
-    private void Reload() {
+
+    private void Reload() 
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
