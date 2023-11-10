@@ -157,6 +157,7 @@ public class Special : MonoBehaviour
         public override void Awake() 
         {
             fuelCost = 5f;
+            duration = 0f;
         }
         
         public override void Begin() 
