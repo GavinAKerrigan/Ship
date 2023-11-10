@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour
     public bool paused = false;
 
     [Header("Fuel")]
-    [SerializeField] float fuel;
+    public float fuel;
     [SerializeField] float maxFuel = 100f;
     [SerializeField] float thrustCost = 1f;         // cost per second
     [SerializeField] float stabilizeCost = 1f;      // "
@@ -72,9 +72,9 @@ public class Movement : MonoBehaviour
     //  -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   Update Functions
     void FixedUpdate() 
     {
+        CheckFuel();
         if (paused) return;
         Move();
-        CheckFuel();
     }
 
     private void CheckFuel() 

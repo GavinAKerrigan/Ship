@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Effects : MonoBehaviour
 {
@@ -36,16 +37,16 @@ public class Effects : MonoBehaviour
         }
     }
 
-    public void Thrust(Vector2 thrust)
+    public void Thrust(Vector2 thrust, float multiplier = 1f)
     { 
-        for (int i = 0; i < spawnCount; i++) CreateParticle(thrust); 
+        for (int i = 0; i < spawnCount * multiplier; i++) CreateParticle(thrust); 
     }
 
-    public void Stabilize(float magnitude)
+    public void Stabilize(float magnitude, float multiplier = 1f)
     {
-        for (int i = 0; i < spawnCount; i++) 
+        for (int i = 0; i < spawnCount * multiplier; i++) 
         {
-            float angle = Random.Range(0, 360);
+            float angle = UnityEngine.Random.Range(0, 360);
             Vector2 vector = new Vector2(magnitude, 0);
             vector = Quaternion.Euler(0, 0, angle) * vector;
             CreateParticle(vector, false);
@@ -84,14 +85,21 @@ public class Effects : MonoBehaviour
 
     private void AddRandomness(Particle particle)
     {
-        // random direction
-        float theta = Random.Range(-1f * spriteRandomnessTurn, spriteRandomnessTurn);
-        Vector2 velocity = particle.rb.velocity;
+        float theta = UnityEngine.Random.Range(-1f * spriteRandomnessTurn, spriteRandomnessTurn);
+        Vector2 oldVelocity = particle.rb.velocity;
         float cosTheta = Mathf.Cos(theta);
         float sinTheta = Mathf.Sin(theta);
-        float newVelocityX = velocity.x * cosTheta - velocity.y * sinTheta;
-        float newVelocityY = velocity.x * sinTheta + velocity.y * cosTheta;
-        particle.rb.velocity = new Vector2(newVelocityX, newVelocityY);
-        particle.rb.velocity += particle.rb.velocity.normalized * Random.Range(-1f * spriteRandomnessSpeed, spriteRandomnessSpeed);
+        float newVelocityX = oldVelocity.x * cosTheta - oldVelocity.y * sinTheta;
+        float newVelocityY = oldVelocity.x * sinTheta + oldVelocity.y * cosTheta;
+        Vector2 newVelocity = new Vector2(newVelocityX, newVelocityY);
+
+        // If the dot product of the old and new velocity is negative, reverse the new velocity
+        if (Vector2.Dot(oldVelocity, newVelocity) < 0)
+        {
+            newVelocity = -newVelocity;
+        }
+
+        particle.rb.velocity = newVelocity;
+        particle.rb.velocity += particle.rb.velocity.normalized * UnityEngine.Random.Range(0, spriteRandomnessSpeed);
     }
 }
