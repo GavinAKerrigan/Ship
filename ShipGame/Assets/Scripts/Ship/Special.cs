@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class Special : MonoBehaviour
@@ -10,8 +11,8 @@ public class Special : MonoBehaviour
     public static Movement mv;
     public static SpriteRenderer sr;
 
-    [SerializeField] eType type;
-    private Dictionary<eType, IType> map = new Dictionary<eType, IType>();
+    [SerializeField] eSpecialType type;
+    private Dictionary<eSpecialType, DefaultSpecial> map = new Dictionary<eSpecialType, DefaultSpecial>();
 
     void Awake()
     {
@@ -29,15 +30,15 @@ public class Special : MonoBehaviour
     //  -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   Dictionary Setup
     private void MapDictionary()
     {
-        foreach (eType type in Enum.GetValues(typeof(eType)))
+        foreach (eSpecialType type in Enum.GetValues(typeof(eSpecialType)))
         {
             var typeToCreate = Type.GetType(this.GetType().Namespace + "." + this.GetType().Name + "+" + type.ToString());
-            if (typeToCreate != null) map[type] = Activator.CreateInstance(typeToCreate) as IType;
+            if (typeToCreate != null) map[type] = Activator.CreateInstance(typeToCreate) as DefaultSpecial;
         }
     }
 
     //  -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   Special Classes
-    class IType : MonoBehaviour
+    class DefaultSpecial : MonoBehaviour
     {
         private bool active = false;
         private float timer;
@@ -47,23 +48,29 @@ public class Special : MonoBehaviour
         public float fuelCost = 15f;
         public inputType type = inputType.Press;
 
+        // virtual functions
         public virtual void Awake() { timer = cooldown; }
         public virtual void Begin() {}
         public virtual void Continue() {}
         public virtual void End() {}
+
+        // update
         public void Update()
         {
             switch (type)
             {
+                // hold down the button to use the special
                 case inputType.Hold:
                     if (active)
                     {
+                        // when the player continues to hold the button
                         if (timer < duration && Input.GetAxisRaw("Jump") > 0)
                         {
                             timer += Time.deltaTime;
                             mv.fuel -= fuelCost * Time.deltaTime;
                             Continue();
                         }
+                        // when the player releases the button
                         else
                         {
                             active = false;
@@ -71,7 +78,11 @@ public class Special : MonoBehaviour
                             End();
                         }
                     }
+
+                    // idle
                     else if (timer < cooldown) timer += Time.deltaTime;
+
+                    // when the player presses the button
                     else if (Input.GetAxisRaw("Jump") > 0)
                     {
                         active = true;
@@ -80,15 +91,20 @@ public class Special : MonoBehaviour
                     }
                     break;
 
+                // press the button to use the special
                 case inputType.Press:
                     if (active)
                     {
+
+                        // continue after button press
                         if (timer < duration)
                         {
                             timer += Time.deltaTime;
                             mv.fuel -= fuelCost * Time.deltaTime;
                             Continue();
                         }
+
+                        // end after duration
                         else
                         {
                             active = false;
@@ -96,7 +112,11 @@ public class Special : MonoBehaviour
                             End();
                         }
                     }
+
+                    // idle
                     else if (timer < cooldown) timer += Time.deltaTime;
+
+                    // when the player presses the button
                     else if (Input.GetAxisRaw("Jump") > 0)
                     {
                         active = true;
@@ -114,14 +134,14 @@ public class Special : MonoBehaviour
         Press
     }
 
-    private enum eType
+    private enum eSpecialType
     {
         Charge,
         Dash,
         Phase
     }
 
-    class Charge : IType 
+    class Charge : DefaultSpecial 
     {
         public override void Awake() 
         { 
@@ -152,12 +172,13 @@ public class Special : MonoBehaviour
         }
     }
 
-    class Dash : IType 
+    class Dash : DefaultSpecial 
     {
         public override void Awake() 
         {
             fuelCost = 5f;
             duration = 0f;
+            base.Awake();
         }
         
         public override void Begin() 
@@ -168,7 +189,7 @@ public class Special : MonoBehaviour
         }
     }
     
-    class Phase : IType 
+    class Phase : DefaultSpecial 
     {
         public override void Awake() 
         { 
