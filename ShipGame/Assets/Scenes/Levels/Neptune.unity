@@ -1789,6 +1789,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 7050133489140964464, guid: 2cc3d915d25b49f46a77af9dcbaee63b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050133489140964464, guid: 2cc3d915d25b49f46a77af9dcbaee63b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050133489140964464, guid: 2cc3d915d25b49f46a77af9dcbaee63b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050133489140964464, guid: 2cc3d915d25b49f46a77af9dcbaee63b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050133489140964464, guid: 2cc3d915d25b49f46a77af9dcbaee63b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050133489140964464, guid: 2cc3d915d25b49f46a77af9dcbaee63b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.3999939
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2173,6 +2197,7 @@ MonoBehaviour:
   followPlayer: 1
   target: {fileID: 1202054155}
   offset: {x: 0, y: 0, z: 0}
+  lerpSpeed: 0.03
 --- !u!1 &1273414539
 GameObject:
   m_ObjectHideFlags: 0
