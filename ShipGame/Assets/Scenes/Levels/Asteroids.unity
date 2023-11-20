@@ -797,6 +797,19 @@ PolygonCollider2D:
       - {x: 0.29, y: -1.22}
       - {x: 0.41, y: -1.11}
   m_UseDelaunayMesh: 0
+--- !u!114 &56675110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56675108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9435a9b0b72bf41b574a8725c03859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
 --- !u!1 &62989646
 GameObject:
   m_ObjectHideFlags: 0
@@ -34487,6 +34500,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 473831522941490739, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
+      propertyPath: thrustCost
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 473831522941490739, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
       propertyPath: angularDrag
       value: 9
       objectReference: {fileID: 0}
@@ -34494,6 +34511,10 @@ PrefabInstance:
       propertyPath: fuelDisplay
       value: 
       objectReference: {fileID: 115037237}
+    - target: {fileID: 473831522941490739, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
+      propertyPath: stabilizeCost
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1024834863161386101, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
       propertyPath: m_Name
       value: Angel
@@ -34582,6 +34603,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1024834863161386101, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 56675109}
+    - targetCorrespondingSourceObject: {fileID: 1024834863161386101, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 56675110}
   m_SourcePrefab: {fileID: 100100000, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
 --- !u!1 &1353572244
 GameObject:
