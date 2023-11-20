@@ -14,28 +14,28 @@ public class Movement : MonoBehaviour
     SpriteRenderer sr;
 
     [Header("Input")]
-    [SerializeField] float  thrust = 5f;
-    [SerializeField] float  rotation = 5f;
-    [SerializeField] float  stabilizer = 5f;
+    public float  thrust = 5f;
+    public float  rotation = 5f;
+    public float  stabilizer = 5f;
     private float iThrust, iRotation, iStabilizer;
 
     [Header("Physics")]
-    [SerializeField] float  drag = 5f;
-    [SerializeField] float  angularDrag = 5f;
-    [SerializeField] float  maxVelocity = 5f;
-    [SerializeField] float  maxAngularVelocity = 5f;
+    public float  drag = 5f;
+    public float  angularDrag = 5f;
+    public float  maxVelocity = 5f;
+    public float  maxAngularVelocity = 5f;
     private float iDrag, iAngularDrag, iMaxVelocity, iMaxAngularVelocity;
     public bool paused = false;
 
     [Header("Fuel")]
     public float fuel;
-    [SerializeField] float maxFuel = 100f;
-    [SerializeField] float thrustCost = 1f;         // cost per second
-    [SerializeField] float stabilizeCost = 1f;      // "
-    [SerializeField] TextMeshProUGUI fuelDisplay;
+    public float maxFuel = 100f;
+    public float thrustCost = 1f;         // cost per second
+    public float stabilizeCost = 1f;      // "
+    public TextMeshProUGUI fuelDisplay;
 
     [Header("Loading")]
-    [SerializeField] string nextScene = "Level Select";
+    public string nextScene = "Level Select";
 
     //  -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   Awake Functions
     void Awake() 

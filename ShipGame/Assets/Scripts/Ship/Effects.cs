@@ -9,7 +9,7 @@ public class Effects : MonoBehaviour
     private List<Particle> particles = new List<Particle>(); 
 
     [Header("Prefab Settings")]
-    [SerializeField] Particle particlePrefab;
+    public Particle particlePrefab;
     [SerializeField] float particleScale = 1f;
 
     [Header("Spawning Settings")]
