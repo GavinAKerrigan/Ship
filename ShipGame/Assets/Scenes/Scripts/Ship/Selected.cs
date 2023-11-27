@@ -11,7 +11,6 @@ public class Selected : MonoBehaviour
     GameObject instShip;
     public GameObject ship;
 
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -23,10 +22,5 @@ public class Selected : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if(SceneManager.GetActiveScene().name == "ShipSelect")
-        {
-            Destroy(instShip);
-            CreateShip();
-        }*/
     }
 }

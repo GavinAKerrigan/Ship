@@ -32,7 +32,7 @@ public class Movement : MonoBehaviour
     [SerializeField] float maxFuel = 100f;
     [SerializeField] float thrustCost = 1f;         // cost per second
     [SerializeField] float stabilizeCost = 1f;      // "
-    [SerializeField] TextMeshProUGUI fuelDisplay;
+    //[SerializeField] TextMeshProUGUI fuelDisplay;
 
     [Header("Loading")]
     [SerializeField] string nextScene = "Level Select";
@@ -72,7 +72,7 @@ public class Movement : MonoBehaviour
     //  -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   Update Functions
     void FixedUpdate() 
     {
-        CheckFuel();
+        //CheckFuel();
         if (paused) return;
         Move();
     }
@@ -81,8 +81,8 @@ public class Movement : MonoBehaviour
     {
         // update fuel display
         int percent = (int)(fuel / maxFuel * 100);
-        fuelDisplay.text = "Fuel: " + percent + "%";
-        fuelDisplay.color = Color.Lerp(Color.red, Color.green, percent / 100f);
+/*        fuelDisplay.text = "Fuel: " + percent + "%";
+        fuelDisplay.color = Color.Lerp(Color.red, Color.green, percent / 100f);*/
 
         // check for out of fuel
         if (fuel <= 0) Reload();
