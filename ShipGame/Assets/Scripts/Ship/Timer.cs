@@ -4,6 +4,12 @@ using System;
 public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timerDisplay;
-    void Update() { timerDisplay.text = "Time: " + GetElapsedTime(); }
-    public string GetElapsedTime() { return TimeSpan.FromSeconds(Time.time).ToString("mm':'ss'.'ff"); }
+    private float elapsedTime;
+    void Start() { elapsedTime = 0f; }
+    void Update()
+    {
+        timerDisplay.text = "Time: " + GetElapsedTime();
+        elapsedTime += Time.deltaTime;
+    }
+    public string GetElapsedTime() { return TimeSpan.FromSeconds(elapsedTime).ToString("mm':'ss'.'ff"); }
 }
