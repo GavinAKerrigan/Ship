@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class LaunchScene : MonoBehaviour
 {
     [SerializeField] string sceneName;
+
     public void OnButtonPress() 
     {
         if (sceneName == "Quit") Application.Quit();
         SceneManager.LoadScene(sceneName);
-        Timer.timer.BeginTimer(sceneName);
     }
 }
