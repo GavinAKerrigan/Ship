@@ -1789,6 +1789,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 7050133489140964464, guid: 2cc3d915d25b49f46a77af9dcbaee63b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050133489140964464, guid: 2cc3d915d25b49f46a77af9dcbaee63b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050133489140964464, guid: 2cc3d915d25b49f46a77af9dcbaee63b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050133489140964464, guid: 2cc3d915d25b49f46a77af9dcbaee63b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050133489140964464, guid: 2cc3d915d25b49f46a77af9dcbaee63b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050133489140964464, guid: 2cc3d915d25b49f46a77af9dcbaee63b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.3999939
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2065,6 +2089,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1024834863161386101, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
   m_PrefabInstance: {fileID: 1719549162}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1202054156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202054155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9435a9b0b72bf41b574a8725c03859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
 --- !u!1 &1228682144
 GameObject:
   m_ObjectHideFlags: 0
@@ -2173,6 +2210,7 @@ MonoBehaviour:
   followPlayer: 1
   target: {fileID: 1202054155}
   offset: {x: 0, y: 0, z: 0}
+  lerpSpeed: 0.03
 --- !u!1 &1273414539
 GameObject:
   m_ObjectHideFlags: 0
@@ -2733,9 +2771,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 473831522941490739, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
+      propertyPath: nextScene
+      value: Mars
+      objectReference: {fileID: 0}
+    - target: {fileID: 473831522941490739, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
+      propertyPath: thrustCost
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 473831522941490739, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
       propertyPath: fuelDisplay
       value: 
       objectReference: {fileID: 185728685}
+    - target: {fileID: 473831522941490739, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
+      propertyPath: stabilizeCost
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1024834863161386101, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
       propertyPath: m_Name
       value: Dart
@@ -2795,7 +2845,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1024834863161386101, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1202054156}
   m_SourcePrefab: {fileID: 100100000, guid: c092a642a130354438a2d914eb8a55bf, type: 3}
 --- !u!1 &1723669246
 GameObject:
