@@ -20,6 +20,8 @@ public class ShipButton : MonoBehaviour
     }
     public void OnButtonPress()
     {
+        DontDestroyOnLoad(GameObject.Find("Selected").GetComponent<Selected>().ship);
         GameObject.Find("Selected").GetComponent<Selected>().ship = ship;
+        Debug.Log("Ding");
     }
 }
