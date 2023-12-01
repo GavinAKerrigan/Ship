@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] bool followPlayer;
-    [SerializeField] GameObject target;
+    [SerializeField] public GameObject target;
     [SerializeField] Vector3 offset;
     [SerializeField] float lerpSpeed = 0.03f;
     Vector3 cameraPosition;
