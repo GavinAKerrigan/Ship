@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/Ship Select.unity
     guid: a3e05cb0527709b40944f2a986e1cf5f
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 4.unity
+    guid: d5853037ccd915b41a9c2afebaeacaed
   m_configObjects: {}
